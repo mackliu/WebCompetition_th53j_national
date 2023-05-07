@@ -52,26 +52,30 @@ function login(){
     let user={acc:$("#acc").val(),
               pw:$("#pw").val()}
     console.log(user);
-
     $.post("cert.php",{cert:$("#cert").val()},function(response){
-
         if(parseInt(response)==1){
-            $.post("login.php",user,function(check){
-            //console.log(check)
-            if(parseInt(check)==1){
-                $("#loginCheck").html("登入成功!")
-                $("#loginCheck").removeClass("login-error")
-                $("#loginCheck").addClass("login-success")
-            }else{
-                $("#loginCheck").html("帳號或密碼錯誤")
-                $("#loginCheck").removeClass("login-success")
-                $("#loginCheck").addClass("login-error")
-            }
-        })
+            $.post("chk_acc.php",{acc:user.acc},function(chk){
+                if(parseInt(chk)==1){
+                    $.post("login.php",user,function(check){
+                    //console.log(check)
+                        if(parseInt(check)==1){
+                            $("#loginCheck").html("登入成功!")
+                            $("#loginCheck").removeClass("login-error")
+                            $("#loginCheck").addClass("login-success")
+                        }else{
+                            $("#loginCheck").html("帳號或密碼錯誤")
+                            $("#loginCheck").removeClass("login-success")
+                            $("#loginCheck").addClass("login-error")
+                        }
+                    })
+            
+                }else{
+                    alert("帳號不存在，請註冊新帳號")
+                }
+            })
         }else{
             alert("驗證碼錯誤，請重新輸入");
         }
-
     })
 
 
