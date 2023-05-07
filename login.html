@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <style>
+        .login-error,.login-success{
+            border-radius: 5px;
+            padding:10px 20px;
+        }
+        .login-success{
+            color:green;
+            background:lightgreen;
+        }
+        .login-error{
+            color:red;
+            background:pink;
+        }
+    </style>
+</head>
+<body>
+    <form action="login.php" method="post">
+        <div id="loginCheck"></div>
+        <div>
+            <label for="acc">帳號:</label>
+            <input type="text" name="acc" id="acc">
+        </div>
+        <div>
+            <label for="acc">密碼:</label>
+            <input type="password" name="pw" id="pw">
+        </div>
+        <div>
+            <input type="button" value="登入" onclick="login()">
+        </div>
+    </form>
+</body>
+</html>
+<script>
+function login(){
+    let user={acc:$("#acc").val(),
+              pw:$("#pw").val()}
+    console.log(user);
+
+    $.post("login.php",user,function(check){
+        console.log(check)
+        if(parseInt(check)==1){
+            $("#loginCheck").html("登入成功!")
+            $("#loginCheck").removeClass("login-error")
+            $("#loginCheck").addClass("login-success")
+        }else{
+            $("#loginCheck").html("帳號或密碼錯誤")
+            $("#loginCheck").removeClass("login-success")
+            $("#loginCheck").addClass("login-error")
+        }
+    })
+}
+</script>
