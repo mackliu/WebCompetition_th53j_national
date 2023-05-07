@@ -8,7 +8,13 @@ $user=[
     2=>['name'=>'江美麗',
         'age'=>21,
         'rank'=>5]
-]
+];
+
+if(!isset($user[$id])){
+    echo "<span style='color:red'>此帳號不存在!</span>";
+    exit();
+}
+
 
 ?>
 
@@ -27,5 +33,12 @@ $user=[
     </div>
     <div>
         <input type="button" value="編輯">
+        <input type="button" value="取消" onclick="cancel()">
     </div>
 </form>
+
+ <script>
+function cancel(){
+    $(".edit-form").html("");
+}
+ </script>
