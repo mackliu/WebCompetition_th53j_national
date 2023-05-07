@@ -19,6 +19,11 @@
             color:red;
             background:pink;
         }
+        .cert{
+            display:inline-block;
+            border:1px solid #999;
+            padding:5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -33,6 +38,10 @@
             <input type="password" name="pw" id="pw">
         </div>
         <div>
+            <label for="cert">驗證碼:</label>
+            <input type="text" name="cert" id="cert">
+        </div>
+        <div>
             <input type="button" value="登入" onclick="login()">
         </div>
     </form>
@@ -44,17 +53,27 @@ function login(){
               pw:$("#pw").val()}
     console.log(user);
 
-    $.post("login.php",user,function(check){
-        console.log(check)
-        if(parseInt(check)==1){
-            $("#loginCheck").html("登入成功!")
-            $("#loginCheck").removeClass("login-error")
-            $("#loginCheck").addClass("login-success")
+    $.post("cert.php",{cert:$("#cert").val()},function(response){
+
+        if(parseInt(response)==1){
+            $.post("login.php",user,function(check){
+            //console.log(check)
+            if(parseInt(check)==1){
+                $("#loginCheck").html("登入成功!")
+                $("#loginCheck").removeClass("login-error")
+                $("#loginCheck").addClass("login-success")
+            }else{
+                $("#loginCheck").html("帳號或密碼錯誤")
+                $("#loginCheck").removeClass("login-success")
+                $("#loginCheck").addClass("login-error")
+            }
+        })
         }else{
-            $("#loginCheck").html("帳號或密碼錯誤")
-            $("#loginCheck").removeClass("login-success")
-            $("#loginCheck").addClass("login-error")
+            alert("驗證碼錯誤，請重新輸入");
         }
+
     })
+
+
 }
 </script>
