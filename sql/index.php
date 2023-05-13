@@ -39,6 +39,7 @@ echo "<table>";
 echo "<tr>";
 echo "<td>品項</td>";
 echo "<td>價格</td>";
+echo "<td>操作</td>";
 echo "</tr>";
 foreach($rows as $row){
     echo "<tr>";
@@ -47,6 +48,11 @@ foreach($rows as $row){
         echo "</td>";
         echo "<td>";
             echo $row['price'];
+        echo "</td>";
+        echo "<td>";
+            echo "<a href='edit_form.php'>";
+            echo '編輯';
+            echo "</a>";
         echo "</td>";
     echo "</tr>";
 }
