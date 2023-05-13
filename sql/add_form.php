@@ -19,7 +19,7 @@
     </p>
     <p>
          <lable>是否上架</lable>
-        <input type="radio" name="up" value="1">是&nbsp;&nbsp;
+        <input type="radio" name="up" value="1" checked>是&nbsp;&nbsp;
         <input type="radio" name="up" value="0">否
         
     </p>
