@@ -16,6 +16,12 @@
             padding:5px 10px;
 
         }
+        .btn-add{
+            padding:5px 10px;
+            border:1px solid lightblue;
+            border-radius :7px;
+            margin:10px;
+        }
     </style>
 </head>
 <body>
@@ -26,6 +32,8 @@ $pdo=new PDO($dsn,'root','');
 $sql="select * from `products`";
 
 $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<a href='add_form.php' class='btn-add'>新增品項</a>";
 
 echo "<table>";
 echo "<tr>";
