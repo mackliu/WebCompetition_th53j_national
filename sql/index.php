@@ -52,6 +52,9 @@ foreach($rows as $row){
         echo "<td>";
             echo "<a href='edit_form.php?id={$row['id']}'>";
             echo '編輯';
+            echo "</a>&nbsp;&nbsp;";
+            echo "<a href='del.php?id={$row['id']}'>";
+            echo '刪除';
             echo "</a>";
         echo "</td>";
     echo "</tr>";
