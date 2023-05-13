@@ -32,8 +32,16 @@ $pdo=new PDO($dsn,'root','');
 $sql="select * from `products`";
 
 $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+if(isset($_GET['result'])){
+    echo "訂餐完成，感謝惠顧，請稍後取餐";
+}
+
+
 ?>
-<form action="add_order.php" method="post">
+
+
+<form action="confirm.php" method="post">
 <table>
 <tr>
 <td>品項</td>
