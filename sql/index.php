@@ -50,7 +50,7 @@ foreach($rows as $row){
             echo $row['price'];
         echo "</td>";
         echo "<td>";
-            echo "<a href='edit_form.php'>";
+            echo "<a href='edit_form.php?id={$row['id']}'>";
             echo '編輯';
             echo "</a>";
         echo "</td>";
